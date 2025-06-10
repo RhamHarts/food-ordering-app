@@ -20,6 +20,17 @@
                     <div class="flex items-center justify-between">
                         <h2 class="text-xl font-semibold text-gray-800">@yield('title', 'Dashboard')</h2>
                         <div class="flex items-center space-x-4">
+                            <a href="{{ route('cart.index') }}" class="relative text-gray-500 hover:text-gray-700">
+                                <i class="fas fa-shopping-cart text-2xl"></i>
+                                @php
+                                    $cartCount = count(session('cart', []));
+                                @endphp
+                                @if($cartCount > 0)
+                                    <span class="absolute -top-2 -right-2 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
+                                        {{ $cartCount }}
+                                    </span>
+                                @endif
+                            </a>
                             <button class="text-gray-500 hover:text-gray-700">
                                 <i class="fas fa-bell"></i>
                             </button>

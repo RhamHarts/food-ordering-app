@@ -21,7 +21,7 @@
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 @foreach($menus as $menu)
-                <div class="bg-white border rounded-lg overflow-hidden">
+                <div class="bg-white border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow duration-200">
                     <img src="{{ asset('images/' . $menu->image) }}" alt="{{ $menu->name }}" class="w-full h-48 object-cover">
                     <div class="p-4">
                         <h4 class="text-xl font-semibold mb-2">{{ $menu->name }}</h4>
@@ -30,8 +30,9 @@
                             <span class="text-lg font-bold">Rp {{ number_format($menu->price, 0, ',', '.') }}</span>
                             <form action="{{ route('cart.add', $menu->id) }}" method="POST">
                                 @csrf
-                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2">
-                                    <i class="fas fa-cart-plus"></i> Tambah
+                                <button type="submit" class="bg-blue-500 text-white py-2 px-4 rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 flex items-center space-x-2 transition-colors duration-200">
+                                    <i class="fas fa-cart-plus"></i>
+                                    <span>Pesan</span>
                                 </button>
                             </form>
                         </div>

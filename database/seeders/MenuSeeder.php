@@ -13,11 +13,35 @@ class MenuSeeder extends Seeder
      */
     public function run(): void
     {
-        Menu::create([
-            'name' => 'Nasi Goreng',
-            'description' => 'Nasi goreng dengan ayam dan telur',
-            'price' => 15000,
-            'image' => 'nasi-goreng.jpg'
-        ]);
+        $menus = [
+            [
+                'name' => 'Nasi Goreng',
+                'description' => 'Nasi goreng spesial dengan bumbu rahasia',
+                'price' => 20000,
+                'image' => 'nasi-goreng.jpg'
+            ],
+            [
+                'name' => 'Mie Goreng',
+                'description' => 'Mie goreng dengan bumbu khas',
+                'price' => 20000,
+                'image' => 'mie-goreng.jpeg'
+            ],
+            [
+                'name' => 'Ayam Bakar',
+                'description' => 'Ayam bakar dengan bumbu spesial',
+                'price' => 30000,
+                'image' => 'ayam-bakar.jpg'
+            ],
+            [
+                'name' => 'Es Teh',
+                'description' => 'Es teh manis segar',
+                'price' => 5000,
+                'image' => 'es-teh.jpeg'
+            ]
+        ];
+
+        foreach ($menus as $menu) {
+            Menu::create($menu);
+        }
     }
 }
