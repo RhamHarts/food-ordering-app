@@ -45,5 +45,9 @@ Route::delete('/cart/remove/{id}', [CartController::class, 'remove'])->name('car
 Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear');
 
 // Order routes
-Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
 Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');
+Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+Route::patch('/orders/{order}/complete', [OrderController::class, 'complete'])->name('orders.complete');
+Route::patch('/orders/{order}/cancel', [OrderController::class, 'cancel'])->name('orders.cancel');
+Route::post('/orders/bulk-complete', [OrderController::class, 'bulkComplete'])->name('orders.bulk-complete');
+Route::post('/orders/bulk-cancel', [OrderController::class, 'bulkCancel'])->name('orders.bulk-cancel');

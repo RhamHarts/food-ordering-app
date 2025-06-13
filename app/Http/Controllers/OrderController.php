@@ -8,6 +8,18 @@ use Illuminate\Support\Str;
 
 class OrderController extends Controller
 {
+    public function index(Request $request)
+    {
+        $query = Order::query();
+
+        if ($request->has('status')) {
+            $query->where('status', $request->status);
+        }
+
+        $orders = $query->latest()->get();
+        return view('orders.index', compact('orders'));
+    }
+
     public function checkout(Request $request)
     {
         $cart = session('cart');
@@ -36,9 +48,35 @@ class OrderController extends Controller
         return redirect()->route('orders.index')->with('success', 'Pesanan berhasil dibuat');
     }
 
-    public function index()
+    public function complete(Order $order)
     {
-        $orders = Order::latest()->get();
-        return view('orders.index', compact('orders'));
+        $order->update(['status' => 'completed']);
+        return redirect()->back()->with('success', 'Order marked as completed');
+    }
+
+    public function cancel(Order $order)
+    {
+        $order->update(['status' => 'cancelled']);
+        return redirect()->back()->with('success', 'Order has been cancelled');
+    }
+
+    public function bulkComplete(Request $request)
+    {
+        $orderIds = $request->input('selected_orders', []);
+        Order::whereIn('id', $orderIds)
+            ->where('status', 'pending')
+            ->update(['status' => 'completed']);
+
+        return redirect()->back()->with('success', 'Selected orders have been completed');
+    }
+
+    public function bulkCancel(Request $request)
+    {
+        $orderIds = $request->input('selected_orders', []);
+        Order::whereIn('id', $orderIds)
+            ->where('status', 'pending')
+            ->update(['status' => 'cancelled']);
+
+        return redirect()->back()->with('success', 'Selected orders have been cancelled');
     }
 }
