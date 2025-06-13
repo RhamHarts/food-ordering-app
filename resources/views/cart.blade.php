@@ -13,7 +13,7 @@
                     @foreach(session('cart') as $id => $item)
                     <div class="flex items-center justify-between p-4 border rounded-lg">
                         <div class="flex items-center space-x-4">
-                            <img src="{{ asset('images/' . $item['image']) }}" alt="{{ $item['name'] }}" class="w-20 h-20 object-cover rounded">
+                            <img src="{{ asset('storage/' . $item['image']) }}" alt="{{ $item['name'] }}" class="w-20 h-20 object-cover rounded">
                             <div>
                                 <h4 class="font-semibold">{{ $item['name'] }}</h4>
                                 <p class="text-gray-600">Rp {{ number_format($item['price'], 0, ',', '.') }}</p>
