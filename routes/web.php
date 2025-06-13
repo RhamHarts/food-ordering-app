@@ -4,16 +4,13 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MenuController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\DashboardController;
 
 // Make dashboard the default landing page
-Route::get('/', function () {
-    return view('dashboard');
-});
+Route::get('/', [DashboardController::class, 'index']);
 
-// Dashboard route (optional, since it's now the default)
-Route::get('/dashboard', function () {
-    return view('dashboard');
-});
+// Dashboard route
+Route::get('/dashboard', [DashboardController::class, 'index']);
 
 // Menu routes
 Route::get('/menu', [MenuController::class, 'index']);
@@ -49,3 +46,4 @@ Route::post('/cart/clear', [CartController::class, 'clear'])->name('cart.clear')
 
 // Order routes
 Route::post('/order/checkout', [OrderController::class, 'checkout'])->name('order.checkout');
+Route::get('/orders', [OrderController::class, 'index'])->name('orders.index');

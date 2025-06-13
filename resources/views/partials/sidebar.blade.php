@@ -12,11 +12,11 @@
             <i class="fas fa-utensils w-6"></i>
             <span>Menu</span>
         </a>
-        {{-- <a href="/orders" class="flex items-center px-4 py-3 text-gray-100 hover:bg-gray-700 {{ request()->is('orders') ? 'bg-gray-700' : '' }}">
+        <a href="/orders" class="flex items-center px-4 py-3 text-gray-100 hover:bg-gray-700 {{ request()->is('orders') ? 'bg-gray-700' : '' }}">
             <i class="fas fa-shopping-cart w-6"></i>
             <span>Orders</span>
         </a>
-        <a href="/customers" class="flex items-center px-4 py-3 text-gray-100 hover:bg-gray-700 {{ request()->is('customers') ? 'bg-gray-700' : '' }}">
+        {{-- <a href="/customers" class="flex items-center px-4 py-3 text-gray-100 hover:bg-gray-700 {{ request()->is('customers') ? 'bg-gray-700' : '' }}">
             <i class="fas fa-users w-6"></i>
             <span>Customers</span>
         </a>
